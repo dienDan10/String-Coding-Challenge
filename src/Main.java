@@ -1,11 +1,9 @@
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
-        challenge6Method2("programming", 'g');
+        challenge7Method1("AABCDBECF");
     }
 
     /*
@@ -175,5 +173,57 @@ public class Main {
         }
         System.out.println("input: " + input);
         System.out.println("output: " + output);
+    }
+
+    /*
+    * Challenge 7: Find first Non-repeated char in a given string
+    * Input: AABCDBECF
+    * Output: D
+    * */
+
+    // Using Collections
+    private static void challenge7Method1(String input) {
+        System.out.println("input: " + input);
+        Map<Character, Integer> map = new LinkedHashMap<>();
+        for (int i = 0; i < input.length(); i++) {
+            if (!map.containsKey(input.charAt(i))) {
+                map.put(input.charAt(i), 1);
+            } else {
+                map.put(input.charAt(i), map.get(input.charAt(i)) + 1);
+            }
+        }
+
+        char c = '\u0000'; // default value for char
+        for (int i = 0; i < input.length(); i++) {
+            if (map.get(input.charAt(i)) == 1) {
+                c = input.charAt(i);
+                break;
+            }
+        }
+        if (c == '\u0000') {
+            System.out.println("No non repeated character.");
+        }
+        System.out.println("Output: " + c);
+    }
+
+    // without using collection
+    private static void challenge7Method2(String input) {
+        // A = 65, Z = 90, a = 97, z = 122
+        int[] arr = new int[128];
+        for (int i = 0; i < input.length(); i++) {
+            arr[(int)input.charAt(i)]++;
+        }
+        char c = '\u0000';
+        for (int i = 1; i < 128; i++) {
+            if (arr[i] == 1) {
+                c = (char) i;
+                break;
+            }
+        }
+        if (c == '\u0000') {
+            System.out.println("No non repeated character.");
+        }
+        System.out.println("input: " + input);
+        System.out.println("Output: " + c);
     }
 }

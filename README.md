@@ -38,3 +38,9 @@ This is some very interesting string manipulation exercises that i think are ver
     *  Input: (String "programming", char g)
     *  Output: prog1rammin2
     * */
+
+    /*
+    * Challenge 7: Find first Non-repeated char in a given string
+    * Input: AABCDBECF
+    * Output: D
+    * */
