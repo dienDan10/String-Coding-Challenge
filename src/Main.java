@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
-        challenge4Method2("programming");
+        challenge6Method2("programming", 'g');
     }
 
     /*
@@ -120,4 +120,60 @@ public class Main {
         System.out.println("Output: " + output);
     }
 
+    // using StringBuilder with stream
+    private static void challenge4Method3(String input) {
+        StringBuilder res = new StringBuilder();
+        input.chars().distinct().forEach(i -> res.append((char) i));
+        System.out.println("input: " + input);
+        System.out.println("output: " + res);
+    }
+
+    /*
+    * Challenge 5: Sort String characters in alphabetical orders
+    * input: programming
+    * output: aggimmnoprr
+    * */
+
+    // using sort method
+    private static void challenge5Method1(String input) {
+        char[] chars = input.toCharArray();
+        Arrays.sort(chars);
+        String output = String.valueOf(chars);
+        System.out.println("input: " + input);
+        System.out.println("output: " + output);
+    }
+
+
+    /*
+    *  Challenge 6: Replace character with its occurrence in String
+    *  Input: (String "programming", char g)
+    *  Output: prog1rammin2
+    * */
+
+    // using toCharArray() method
+    private static void challenge6Method1(String input, char c) {
+        int count = 1;
+        char[] chars = input.toCharArray();
+        for (int i = 0; i < chars.length; i++) {
+            if (chars[i] == c) {
+                chars[i] = Character.forDigit(count, 10);
+                count++;
+            }
+        }
+        String output = String.valueOf(chars);
+        System.out.println("input: " + input);
+        System.out.println("output: " + output);
+    }
+
+    // using replaceFirst() method
+    private static void challenge6Method2(String input, char c) {
+        int count = 1;
+        String output = input;
+        while (output.indexOf(c) != -1) {
+            output = output.replaceFirst(String.valueOf(c), String.valueOf(count));
+            count++;
+        }
+        System.out.println("input: " + input);
+        System.out.println("output: " + output);
+    }
 }
