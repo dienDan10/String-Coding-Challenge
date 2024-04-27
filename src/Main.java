@@ -3,7 +3,7 @@ import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
-        challenge7Method1("AABCDBECF");
+        challenge8Method2("hello");
     }
 
     /*
@@ -225,5 +225,42 @@ public class Main {
         }
         System.out.println("input: " + input);
         System.out.println("Output: " + c);
+    }
+
+    /*
+    * Challenge 8: Find occurrence of each character in a given string
+    * Input: hello
+    * Output: h-1 e-1 l-2 o-1
+    * */
+
+    // using Map<> data structure
+    private static void challenge8Method1(String input) {
+        Map<Character, Integer> map = new LinkedHashMap<>();
+        for (int i = 0; i < input.length(); i++) {
+            map.merge(input.charAt(i), 1, Integer::sum);
+        }
+        System.out.println("Input: " + input);
+        System.out.print("Output: ");
+        map.forEach((key, value) -> {
+            System.out.print(key + "-" + value + " ");
+        });
+        System.out.println();
+    }
+
+    // not using collections
+    private static void challenge8Method2(String input) {
+        System.out.println("Input: " + input);
+        int[] arr = new int[128];
+        for (int i = 0; i < input.length(); i++) {
+            arr[(int)input.charAt(i)]++;
+        }
+        System.out.print("Output: ");
+        for (int i = 0; i < input.length(); i++) {
+            char c = input.charAt(i);
+            if (arr[(int)c] != 0) {
+                System.out.print(c + "-" + arr[(int)c] + " ");
+                arr[(int)c] = 0;
+            }
+        }
     }
 }

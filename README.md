@@ -44,3 +44,9 @@ This is some very interesting string manipulation exercises that i think are ver
     * Input: AABCDBECF
     * Output: D
     * */
+
+    /*
+    * Challenge 8: Find occurrence of each character in a given string
+    * Input: hello
+    * Output: h-1 e-1 l-2 o-1
+    * */
