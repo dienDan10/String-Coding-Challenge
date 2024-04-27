@@ -322,7 +322,7 @@ public class Main {
         char[] arr = input.toCharArray();
         for (int i = 0; i < arr.length; i++) {
             for (int j = i - 1; j >= stringBeginning; j--) {
-                if (arr[i] == arr[j]) { //reset i and firstIndex
+                if (arr[i] == arr[j]) { //reset i and stringBeginning
                     i = j;
                     stringBeginning = j + 1;
                     break;
