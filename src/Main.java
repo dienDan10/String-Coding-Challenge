@@ -3,7 +3,7 @@ import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
-        challenge8Method2("hello");
+        challenge10Method1("abbac");
     }
 
     /*
@@ -263,4 +263,55 @@ public class Main {
             }
         }
     }
+
+    /*
+    * Challenge 9: Write a java program to reverse each word in a given string
+    * Input: java code
+    * Output: avaj edoc
+    * */
+
+    private static void challenge9Method1 (String input) {
+        String[] arr = input.split("\\s");
+        StringBuilder res = new StringBuilder();
+        for (String s : arr) {
+            res.append(new StringBuilder(s).reverse());
+            res.append(" ");
+        }
+        res.deleteCharAt(res.length() - 1);
+        System.out.println("Input: " + input);
+        System.out.println("Output: " + res);
+    }
+
+    /*
+    * Challenge 10: Write a Java program to find longest substring without
+    * repeating character
+    * Input: abbac
+    * Output: bac --> length is 3
+    * */
+
+    // Using Map<> data structure
+    private static void challenge10Method1 (String input) {
+        int length = 0;
+        String output = null;
+        Map<Character, Integer> map = new LinkedHashMap<>();
+        for (int i = 0; i < input.length(); i++) {
+            char c = input.charAt(i);
+            if (!map.containsKey(c)) {
+                map.put(c, i);
+            } else {
+                i = map.get(c);
+                map.clear();
+            }
+            if (map.size() > length) {
+                length = map.size();
+                output = map.keySet().stream()
+                        .map(String::valueOf)
+                        .collect(Collectors.joining());
+            }
+        }
+
+        System.out.println("Input: " + input);
+        System.out.println("Output: " + output + " --> Length is " + length);
+    }
+
 }

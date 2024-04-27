@@ -50,3 +50,16 @@ This is some very interesting string manipulation exercises that i think are ver
     * Input: hello
     * Output: h-1 e-1 l-2 o-1
     * */
+
+    /*
+    * Challenge 9: Write a java program to reverse each word in a given string
+    * Input: java code
+    * Output: avaj edoc
+    * */
+
+    /*
+    * Challenge 10: Write a Java program to find longest substring without
+    * repeating character
+    * Input: abbac
+    * Output: bac --> length is 3
+    * */
