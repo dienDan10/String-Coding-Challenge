@@ -3,7 +3,7 @@ import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
-        challenge10Method1("abbac");
+        challenge10Method2("abcabcbb");
     }
 
     /*
@@ -312,6 +312,30 @@ public class Main {
 
         System.out.println("Input: " + input);
         System.out.println("Output: " + output + " --> Length is " + length);
+    }
+
+    // using traditional loop method
+    private static void challenge10Method2 (String input) {
+        int length = 0;
+        int firstIndex = 0;
+        int stringBeginning = 0;
+        char[] arr = input.toCharArray();
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = i - 1; j >= stringBeginning; j--) {
+                if (arr[i] == arr[j]) { //reset i and firstIndex
+                    i = j;
+                    stringBeginning = j + 1;
+                    break;
+                }
+            }
+
+            if ((i - stringBeginning + 1) > length) { // update length and firstIndex
+                length = i - stringBeginning + 1;
+                firstIndex = stringBeginning;
+            }
+        }
+        System.out.println("Input: " + input);
+        System.out.println("Output: " + input.substring(firstIndex, firstIndex + length) + " --> Length is " + length);
     }
 
 }
