@@ -3,7 +3,8 @@ import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
-        challenge10Method2("abcabcbb");
+        challenge11Method1("onetwominussevenplustwosix"); // 12 - 7 + 26
+        challenge11Method1("sevenminusonezero");
     }
 
     /*
@@ -336,6 +337,57 @@ public class Main {
         }
         System.out.println("Input: " + input);
         System.out.println("Output: " + input.substring(firstIndex, firstIndex + length) + " --> Length is " + length);
+    }
+
+    /*
+    * Challenge 11: Write a Java program to calculate a Calculation written in string
+    * Input: "onetwominussevenplustwosix"
+    * Output: "threeone"
+    * Note: if the result is negative -> "negativethreeone"
+    * */
+
+    private static void challenge11Method1 (String input) {
+        // check for the first sign
+        boolean isPlus = true;
+        // create an array to map to number
+        String[] nums = new String[] {
+                "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"
+        };
+
+       String s = input;
+       int res = 0;
+       int temp = 0;
+        while (!s.isEmpty()) {
+           for (int i = 0; i < nums.length; i++) {
+               if (s.startsWith(nums[i])) {
+                   temp = temp * 10 + i;
+                   s = s.substring(nums[i].length());
+                   break;
+               } else if (s.startsWith("plus")) {
+                   res = isPlus ? res + temp : res - temp;
+                   s = s.substring(4);
+                   isPlus = true;
+                   temp = 0;
+                   break;
+               } else if (s.startsWith("minus")){
+                   res = isPlus ? res + temp : res - temp;
+                   s = s.substring(5);
+                   isPlus = false;
+                   temp = 0;
+               }
+           }
+        }
+        res = isPlus ? res + temp : res - temp;
+        StringBuilder output = new StringBuilder();
+        if (res < 0) {
+            output.append("negative");
+            res = Math.abs(res);
+        }
+        for (int i = 0; i < (res + "").length(); i++) {
+            output.append(nums[(res + "").charAt(i) - '0']);
+        }
+        System.out.println("res = " + output.toString());
+
     }
 
 }

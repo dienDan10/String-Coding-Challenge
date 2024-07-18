@@ -63,3 +63,10 @@ This is some very interesting string manipulation exercises that i think are ver
     * Input: abbac
     * Output: bac --> length is 3
     * */
+
+    /*
+    * Challenge 11: Write a Java program to calculate a Calculation written in string
+      * Input: "onetwominussevenplustwosix"
+      * Output: "threeone"
+      * Note: if the result is negative -> "negativethreeone"
+      * */
